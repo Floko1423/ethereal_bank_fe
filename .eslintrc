@@ -1,0 +1,27 @@
+{
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:prettier/recommended",
+      "plugin:react/jsx-runtime"
+    ],
+    "plugins": ["react", "prettier"],
+    "rules": {
+      "prettier/prettier": "warn"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2021,
+        "sourceType": "module"
+      },
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
+  
+  }
