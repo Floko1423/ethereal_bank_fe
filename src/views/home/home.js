@@ -10,12 +10,11 @@ export default function Home() {
     senha: '',
     nif: '',
     name: '',
-    date_ob:'',
-    phoneFixed:'',
+    date_ob: '',
+    phoneFixed: '',
     phoneNo: '',
-    email:'',
-    profession:''
-
+    email: '',
+    profession: '',
   })
   //<span>{user.nome}</span>
   const navigate = useNavigate() // link/nav para alterar de pags- difs funcionalidades
@@ -29,8 +28,8 @@ export default function Home() {
   const [phone_no, setPhoneNo] = useState('')
   const [email, setEmail] = useState('')
   const [profession, setProfession] = useState('')
-  
-//criar input para cada
+
+  //criar input para cada
   const getUser = async () => {
     try {
       const response = await axios.get('http://localhost:8085/user ')
