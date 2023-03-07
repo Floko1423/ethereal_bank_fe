@@ -36,10 +36,10 @@ const ContainerRegister = styled.div`
   margin-top: 3rem;
 `
 
-const ContainerName = styled.div`
+const ContainerInput = styled.div`
   margin-bottom: 3rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 `
 
 const Input = styled.input`
@@ -50,6 +50,8 @@ const Input = styled.input`
   font-size: 16px;
   color: #333;
   width: 60%;
+  width: 100%;
+
 
   &:focus {
     outline: none;
@@ -70,4 +72,4 @@ const Button = styled.button`
   }
 `
 
-export { Container, Header, ContainerRegister, ContainerName, Input, Button }
+export { Container, Header, ContainerRegister, ContainerInput, Input, Button }

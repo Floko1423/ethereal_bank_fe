@@ -3,7 +3,9 @@ import GlobalStyle from './global.styles'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './views/home/home'
 import Logged from './views/logged/logged'
+// no react as rotas sao instaladas, temos de importar tudo, angular dif
 
+// a fazer o ficheiro navegacao com o BrowserRouter e chamar aqui
 function App() {
   return (
     <>
