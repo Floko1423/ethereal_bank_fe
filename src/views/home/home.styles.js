@@ -52,7 +52,6 @@ const Input = styled.input`
   width: 60%;
   width: 100%;
 
-
   &:focus {
     outline: none;
     box-shadow: 0 0 5px ${colors.green};
@@ -72,4 +71,17 @@ const Button = styled.button`
   }
 `
 
-export { Container, Header, ContainerRegister, ContainerInput, Input, Button }
+const InputForm = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export {
+  Container,
+  Header,
+  ContainerRegister,
+  ContainerInput,
+  Input,
+  Button,
+  InputForm,
+}
