@@ -7,25 +7,68 @@ import Input from '../../atoms/input/input'
 
 export default function Home() {
   //<span>{user.nome}</span>
+  // const [user, setUser] = useState({
+  //   senha: '',
+  //   nif: '',
+  //   name: '',
+  //   date_ob:'',
+  //   phoneFixed:'',
+  //   phoneNo: '',
+  //   email:'',
+  //   profession:''
+
+  // })
   const navigate = useNavigate() // link/nav para alterar de pags- difs funcionalidades
   const [errorLabel, setErrorLabel] = useState('')
 
   const [name, setName] = useState('') // sei que o name vai ter string -valor default
   const [nif, setNif] = useState('')
-  const [senha, setSenha] = useState('')
-  const [confirmSenha, setConfirmSenha] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [dateOb, setDateOB] = useState('')
   const [phoneFixed, setPhoneFixed] = useState('')
   const [phoneNo, setPhoneNo] = useState('')
   const [email, setEmail] = useState('')
   const [profession, setProfession] = useState('')
 
-  //criar input para cada
-  // const getUser = async () => {
+  //metodo para ver se todos os hooks tao preenchidos para depois validar algo no botao (disabled) -> por enabled no css pesquisar change button disabled with styled components   //criar input para cada
+  const getUser = async () => {
+    try {
+      const response = await axios.get('http://localhost:8085/user ')
+      console.log('response', response)
+      // eslint-disable-next-line no-undef
+
+      //setUser(response.data[0])
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  // const tokentest = async () => {
+  //   const data = {
+  //     nif,
+  //     password,
+  //   }
+  //   const headers = {
+  //     'Content-Type': 'application/json',
+  //   }
+
   //   try {
-  //     const response = await axios.get('http://localhost:8085/user ')
-  //     console.log('response', response)
-  //     setUser(response.data[0])
+  //     const response = await axios.post(
+  //       'http://localhost/auth/login',
+  //       data,
+  //       {
+  //         headers,
+  //       }
+  //     )
+  //     console.log(response)
+  //     if (response.status === 201) {
+  //       return navigate('/logged')
+  //     }
+  //     //navigate('/logged')
+  //     /*if(response.status===200){
+
+  //     }*/
   //   } catch (error) {
   //     console.error(error)
   //   }
@@ -34,8 +77,8 @@ export default function Home() {
   const register = async () => {
     const data = {
       name,
-      senha,
-      confirmSenha,
+      password,
+      confirmPassword,
       nif,
       dateOb,
       phoneFixed,
@@ -43,6 +86,7 @@ export default function Home() {
       email,
       profession,
     }
+
     const headers = {
       'Content-Type': 'application/json',
     }
@@ -82,48 +126,57 @@ export default function Home() {
     switch (label) {
       case 'name':
         if (name.length < 2) {
+          setName(value)
           return 'Incorrect name format.'
         }
 
         break
       case 'nif':
+        setNif(value)
         if (!nifRegex.test(value)) {
           return 'Invalid NIF.'
         }
         break
-      case 'senha':
+      case 'password':
+        setPassword(value)
         if (!passwordRegex.test(value)) {
           return 'Invalid password value. Please enter a password that uses the following format:Is at least 8 characters long. Must contain at least one letter. Must contain at least one digit.'
         }
 
         break
-      case 'confirmSenha':
-        if (confirmSenha !== senha) {
+      case 'confirmPassword':
+        setConfirmPassword(value)
+        if (value != password) {
           return 'Invalid password confirmation value. Please enter the same password value.'
         }
         break
 
       case 'dateOb':
+        setDateOB(value)
         if (!nifRegex.test(value)) {
           return 'Invalid date format.'
         }
         break
       case 'phoneFixed':
+        setPhoneFixed(value)
         if (!nifRegex.test(value)) {
           return 'Invalid fixed phone number format.'
         }
         break
       case 'phoneNo':
+        setPhoneNo(value)
         if (!nifRegex.test(value)) {
           return 'Invalid mobile phone number format.'
         }
         break
       case 'email':
+        setEmail(value)
         if (!emailRegex.test(value)) {
           return 'Incorrect email format.'
         }
         break
       case 'profession':
+        setProfession(value)
         if (!nifRegex.test(value)) {
           return 'Invalid profession field format.'
         }
@@ -140,7 +193,7 @@ export default function Home() {
 
   useEffect(() => {
     //use effect para correr metodos logo no ecrã em que entro
-    //getUser()
+    getUser()
   }, []) //este array permite ter variaveis que ira voltar a correr o que tiver dentro do useEffect caso se alterem.
 
   return (
@@ -148,6 +201,10 @@ export default function Home() {
       <S.Header>
         <h1>Ethereal Bank</h1>
       </S.Header>
+      <S.ContainerTitle>
+        <h2> Create Account</h2>
+      </S.ContainerTitle>
+     
       <S.ContainerRegister>
         <div
           style={{
@@ -157,11 +214,8 @@ export default function Home() {
             justifyContent: 'space-between',
           }}
         >
-          <div>
-            <h2> Create Account</h2>
-          </div>
           <form>
-            <div style={{ flexDirection: 'column', display: 'flex' }}>
+            <S.InputForm>
               {' '}
               <S.ContainerInput>
                 <Input
@@ -185,20 +239,20 @@ export default function Home() {
               </S.ContainerInput>
               <S.ContainerInput>
                 <Input
-                  onChange={(event) => setSenha(event.target.value)}
+                  onChange={(event) => setPassword(event.target.value)}
                   type="text"
-                  label={'senha'}
-                  value={senha}
+                  label={'password'}
+                  value={password}
                   validation={hasError}
                   errorLabel={errorLabel}
                 ></Input>
               </S.ContainerInput>
               <S.ContainerInput>
                 <Input
-                  onChange={(event) => setConfirmSenha(event.target.value)}
+                  onChange={(event) => setConfirmPassword(event.target.value)}
                   type="text"
-                  label={'confirmSenha'}
-                  value={confirmSenha}
+                  label={'confirmPassword'}
+                  value={confirmPassword}
                   validation={hasError}
                   errorLabel={errorLabel}
                 ></Input>
@@ -253,14 +307,18 @@ export default function Home() {
                   errorLabel={errorLabel}
                 ></Input>
               </S.ContainerInput>
-              {senha !== '' && <span>{senha}</span>}
-            </div>
+              {password !== '' && <span>{password}</span>}
+            </S.InputForm>
           </form>
           {name !== '' && <span>{name}</span>}
 
           <div></div>
           <div>
-            <S.Button onClick={() => register()} type="submit">
+            <S.Button
+              onClick={() => register()}
+              disabled={errorLabel !== ''}
+              type="submit"
+            >
               {' '}
               Registar Cliente{' '}
             </S.Button>

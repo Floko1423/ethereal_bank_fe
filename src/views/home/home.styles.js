@@ -3,10 +3,11 @@ import { colors } from '../../shared/colors'
 
 const Container = styled.div`
   text-align: left;
-  justify-content: center;
+  /* justify-content: center; */
   display: flex;
+
   flex-direction: column;
-  background-color: grey;
+  background-color: white;
 `
 
 const Header = styled.header`
@@ -21,7 +22,7 @@ const Header = styled.header`
   padding: 1rem 2rem 1rem 2rem;
 `
 const ContainerRegister = styled.div`
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   border-radius: 20px;
   text-align: center;
   display: flex;
@@ -30,9 +31,9 @@ const ContainerRegister = styled.div`
   height: 30rem;
   width: 30%;
   justify-content: space-between;
-  align-self: center;
+  align-self: flex-start;
   display: flex;
-  background-color: white;
+  /* background-color: white; */
   margin-top: 3rem;
 `
 
@@ -76,6 +77,10 @@ const InputForm = styled.div`
   flex-direction: column;
 `
 
+const ContainerTitle = styled.div`
+  padding: 2rem 2rem 2rem 2rem;
+`
+
 export {
   Container,
   Header,
@@ -84,4 +89,5 @@ export {
   Input,
   Button,
   InputForm,
+  ContainerTitle,
 }

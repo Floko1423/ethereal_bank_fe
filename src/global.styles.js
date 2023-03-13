@@ -49,7 +49,7 @@ html {
     }
     #root {
         height: 100%;
-        background-color: grey;
+        background-color: white;
     }
 `
 
